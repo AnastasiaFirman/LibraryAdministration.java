@@ -10,8 +10,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-@JsonIgnoreProperties("person")
+@AllArgsConstructor
+//@ToString
+@Builder
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

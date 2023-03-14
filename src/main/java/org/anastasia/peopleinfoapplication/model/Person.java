@@ -2,10 +2,11 @@ package org.anastasia.peopleinfoapplication.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.springframework.data.jpa.repository.Temporal;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +15,9 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
+@Builder
+//@ToString
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +29,8 @@ public class Person {
     @Column(name = "age")
     private int age;
     @Column(name = "date_of_birth")
-    @JsonFormat(pattern = "dd.MM.yyyy")
     private LocalDate dateOfBirth;
-    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Book> books;
 
     public Person(Long id, String firstName, String lastName, int age, LocalDate dateOfBirth) {
@@ -62,5 +64,11 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, age, dateOfBirth);
+    }
+    @PreRemove
+    public void preRemove() {
+        for (Book b : books) {
+            b.setPerson(null);
+        }
     }
 }
