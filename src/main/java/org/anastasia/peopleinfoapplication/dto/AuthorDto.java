@@ -1,15 +1,13 @@
 package org.anastasia.peopleinfoapplication.dto;
 
 import lombok.*;
-import org.anastasia.peopleinfoapplication.model.Author;
-
 @Setter
 @Getter
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-public class BookDto {
+public class AuthorDto {
     private Long id;
-    private String title;
-    private AuthorDto author;
+    private String authorFirstName;
+    private String authorLastName;
 }

@@ -1,6 +1,5 @@
 package org.anastasia.peopleinfoapplication.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@ToString
+@ToString
 @Builder
 public class Book {
     @Id
@@ -19,10 +18,11 @@ public class Book {
     private Long id;
     @Column(name = "title")
     private String title;
-    @Column(name = "author")
-    private String author;
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 
 }

@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
     //@Query(value = "select person from Person person join fetch person.books where person.id = :id")
-    @EntityGraph(attributePaths = "books")
+    @EntityGraph(attributePaths = "books.author")
     Optional<Person> findById(Long id);
 }

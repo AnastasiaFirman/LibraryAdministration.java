@@ -1,9 +1,6 @@
 package org.anastasia.peopleinfoapplication.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-import org.springframework.data.jpa.repository.Temporal;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,7 +14,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@ToString
+@ToString
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +27,7 @@ public class Person {
     private int age;
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
-    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Book> books;
 
     public Person(Long id, String firstName, String lastName, int age, LocalDate dateOfBirth) {

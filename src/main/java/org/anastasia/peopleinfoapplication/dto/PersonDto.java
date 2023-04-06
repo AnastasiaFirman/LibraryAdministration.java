@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
+@ToString
 public class PersonDto {
     private Long id;
 
@@ -19,7 +20,7 @@ public class PersonDto {
     private String lastName;
 
     private int age;
-    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "dd.MM.yyyy")
+
     private String dateOfBirth;
 
     private List<BookDto> books = new ArrayList<>();
