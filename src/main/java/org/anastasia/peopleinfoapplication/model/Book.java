@@ -1,6 +1,7 @@
 package org.anastasia.peopleinfoapplication.model;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString
 @Builder
+@DynamicUpdate
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
