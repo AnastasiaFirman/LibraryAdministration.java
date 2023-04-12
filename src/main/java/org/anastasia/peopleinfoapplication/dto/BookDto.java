@@ -1,7 +1,6 @@
 package org.anastasia.peopleinfoapplication.dto;
 
 import lombok.*;
-import org.anastasia.peopleinfoapplication.model.Author;
 
 @Setter
 @Getter

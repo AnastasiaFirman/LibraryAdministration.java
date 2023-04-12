@@ -6,7 +6,6 @@ import org.anastasia.peopleinfoapplication.mappers.PersonMapper;
 import org.anastasia.peopleinfoapplication.model.Person;
 import org.anastasia.peopleinfoapplication.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,11 +24,16 @@ public class PersonController {
     }
 
     @GetMapping("/api/v1/person")
-    public List<ShortPersonDto> findAll() {
-        return personService.findAll().stream()
-                .map(personMapper::toShortDto)
-                .collect(Collectors.toList());
+    public List<ShortPersonDto> findAll(@RequestParam(name = "lastName", required = false) String lastName) {
+        List<Person> list = null;
+        if (lastName == null || lastName.isEmpty()) {
+            list = personService.findAll();
+        } else {
+            list = personService.findAll(lastName);
+        }
+        return list.stream().map(personMapper::toShortDto).collect(Collectors.toList());
     }
+
 
     @GetMapping("/api/v1/person/{id}")
     public PersonDto findById(@PathVariable("id") Long id) {
@@ -37,17 +41,13 @@ public class PersonController {
     }
 
     @PostMapping("/api/v1/person")
-    public PersonDto save(@RequestBody PersonDto personDto) {
-        Person person = personMapper.toEntity(personDto);
-        Person savedPerson = personService.save(person);
-        return personMapper.toPersonDto(savedPerson);
+    public ShortPersonDto save(@RequestBody ShortPersonDto shortPersonDto) {
+        return personMapper.toShortDto(personService.save(personMapper.toEntity(shortPersonDto)));
     }
 
     @PutMapping("/api/v1/person/{id}")
-    public PersonDto update(@RequestBody PersonDto personDto, @PathVariable("id") Long id) {
-        Person person = personMapper.toEntity(personDto);
-        Person updatedPerson = personService.update(id, person);
-        return personMapper.toPersonDto(updatedPerson);
+    public ShortPersonDto update(@RequestBody ShortPersonDto shortPersonDto, @PathVariable("id") Long id) {
+        return personMapper.toShortDto(personService.update(id, personMapper.toEntity(shortPersonDto)));
     }
 
     @DeleteMapping("/api/v1/person/{id}")

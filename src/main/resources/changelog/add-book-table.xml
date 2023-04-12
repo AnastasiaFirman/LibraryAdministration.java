@@ -10,11 +10,12 @@
             <column name="title" type="text" remarks="Book title">
                 <constraints nullable="false"/>
             </column>
-            <column name="author" type="text" remarks="Author">
-                <constraints nullable="false"/>
-            </column>
             <column name="person_id" type="bigint" remarks="reference on person table">
                 <constraints foreignKeyName="fk_book_person_id" references="person(id)"/>
+            </column>
+            <column name="author_id" type="bigint" remarks="reference on author table">
+                <constraints foreignKeyName="fk_book_author_id" references="author(id)"
+                             nullable="false"/>
             </column>
         </createTable>
     </changeSet>

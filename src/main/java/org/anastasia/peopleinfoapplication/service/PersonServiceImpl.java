@@ -1,11 +1,16 @@
 package org.anastasia.peopleinfoapplication.service;
 
+import org.anastasia.peopleinfoapplication.exception.BookNotFoundException;
 import org.anastasia.peopleinfoapplication.exception.UserNotFoundException;
+import org.anastasia.peopleinfoapplication.model.Book;
 import org.anastasia.peopleinfoapplication.model.Person;
+import org.anastasia.peopleinfoapplication.repository.BookRepository;
 import org.anastasia.peopleinfoapplication.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -15,11 +20,13 @@ import java.util.List;
 public class PersonServiceImpl implements PersonService {
 
     private final PersonRepository personRepository;
+    private final BookRepository bookRepository;
 
 
     @Autowired
-    public PersonServiceImpl(PersonRepository personRepository) {
+    public PersonServiceImpl(PersonRepository personRepository, BookRepository bookRepository) {
         this.personRepository = personRepository;
+        this.bookRepository = bookRepository;
     }
 
     @Override
@@ -41,6 +48,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public List<Person> findAll(String lastName) {
+        return personRepository.findAllByLastNameIgnoreCase(lastName);
+    }
+
+    @Override
     public void deleteById(Long id) {
         try {
             personRepository.deleteById(id);
@@ -55,6 +67,23 @@ public class PersonServiceImpl implements PersonService {
         person.setAge(age);
         person.setId(id);
         return personRepository.save(person);
+    }
+
+    @Transactional
+    @Override
+    public Person setBookForPerson(Long personId, Long bookId) {
+        Person foundPerson = personRepository.findById(personId).orElseThrow(UserNotFoundException::new);
+        Book foundBook = bookRepository.findById(bookId).orElseThrow(BookNotFoundException::new);
+        foundBook.setPerson(foundPerson);
+        foundPerson.getBooks().add(foundBook);
+        return foundPerson;
+    }
+
+    @Transactional
+    @Override
+    public void untieBookFromPerson(@PathVariable("bookId") Long bookId) {
+        Book foundBook = bookRepository.findById(bookId).orElseThrow(BookNotFoundException::new);
+        foundBook.setPerson(null);
     }
 
     private int calcAge(Person person) {
