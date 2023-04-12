@@ -15,7 +15,11 @@ public interface PersonMapper {
     @Mapping(target = "dateOfBirth", dateFormat = "dd.MM.yyyy")
     ShortPersonDto toShortDto(Person person);
     @Mapping(target = "dateOfBirth", dateFormat = "dd.MM.yyyy")
+    ShortPersonDto toShortDto(ShortPersonDto shortPersonDto);
+    @Mapping(target = "dateOfBirth", dateFormat = "dd.MM.yyyy")
     PersonDto toPersonDto(Person person);
     @Mapping(target = "dateOfBirth", dateFormat = "dd.MM.yyyy")
     Person toEntity(PersonDto personDto);
+    @Mapping(target = "dateOfBirth", dateFormat = "dd.MM.yyyy")
+    Person toEntity(ShortPersonDto shortPersonDto);
 }

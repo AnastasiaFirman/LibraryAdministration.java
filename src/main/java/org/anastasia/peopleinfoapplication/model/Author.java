@@ -17,9 +17,9 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "author_first_name")
+    @Column(name = "first_name")
     private String authorFirstName;
-    @Column(name = "author_last_name")
+    @Column(name = "last_name")
     private String authorLastName;
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,
             CascadeType.MERGE})
