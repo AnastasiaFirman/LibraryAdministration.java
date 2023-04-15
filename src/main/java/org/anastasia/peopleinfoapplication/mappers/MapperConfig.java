@@ -10,4 +10,8 @@ public class MapperConfig {
     public PersonMapper personMapper() {
         return Mappers.getMapper(PersonMapper.class);
     }
+    @Bean
+    public BookMapper bookMapper() {
+        return Mappers.getMapper(BookMapper.class);
+    }
 }

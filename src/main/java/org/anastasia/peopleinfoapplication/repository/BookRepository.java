@@ -1,10 +1,12 @@
 package org.anastasia.peopleinfoapplication.repository;
 
 import org.anastasia.peopleinfoapplication.model.Book;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+
+import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-    //void updatePersonId(Long personId, Long bookId);
+    @EntityGraph(attributePaths = {"author"})
+    Optional<Book> findById(Long id);
 }

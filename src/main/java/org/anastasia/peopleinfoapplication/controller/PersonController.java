@@ -34,7 +34,6 @@ public class PersonController {
         return list.stream().map(personMapper::toShortDto).collect(Collectors.toList());
     }
 
-
     @GetMapping("/api/v1/person/{id}")
     public PersonDto findById(@PathVariable("id") Long id) {
         return personMapper.toPersonDto(personService.findById(id));
@@ -53,5 +52,10 @@ public class PersonController {
     @DeleteMapping("/api/v1/person/{id}")
     public void deleteById(@PathVariable("id") Long id) {
         personService.deleteById(id);
+    }
+    @PutMapping("/api/v1/person/{personId}/book/{bookId}")
+    public PersonDto setBookForPerson(@PathVariable("personId") Long personId,
+                                      @PathVariable("bookId") Long bookId) {
+        return personMapper.toPersonDto(personService.setBookForPerson(personId, bookId));
     }
 }

@@ -2,7 +2,7 @@
 <databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
-    <changeSet id="3" author="Anastasia">
+    <changeSet id="1" author="Anastasia">
         <createTable tableName="author" remarks="Author table">
             <column name="id" type="bigserial" autoIncrement="true" remarks="ID автоинкремент">
                 <constraints primaryKey="true"/>
@@ -14,6 +14,10 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+    </changeSet>
+    <changeSet id="2" author="Anastasia">
+        <addUniqueConstraint tableName="author" columnNames="first_name, last_name"
+                             constraintName="uq_author_first_name_last_name"/>
     </changeSet>
 
 </databaseChangeLog>

@@ -79,13 +79,6 @@ public class PersonServiceImpl implements PersonService {
         return foundPerson;
     }
 
-    @Transactional
-    @Override
-    public void untieBookFromPerson(@PathVariable("bookId") Long bookId) {
-        Book foundBook = bookRepository.findById(bookId).orElseThrow(BookNotFoundException::new);
-        foundBook.setPerson(null);
-    }
-
     private int calcAge(Person person) {
         Period difference = Period.between(person.getDateOfBirth(), LocalDate.now());
         int calculatedAge = difference.getYears();
