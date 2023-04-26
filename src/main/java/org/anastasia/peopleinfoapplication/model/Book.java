@@ -16,7 +16,7 @@ import javax.persistence.*;
 @DynamicUpdate
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "book_id_seq")
     private Long id;
     @Column(name = "title")
     private String title;

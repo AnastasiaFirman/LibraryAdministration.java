@@ -48,11 +48,8 @@ public class BookServiceImpl implements BookService {
                             () -> authorsBatch.add(author)
                     );
         }
-
         authorRepository.saveAll(authorsBatch);
-
         books.forEach(book -> book.setAuthor(uniqueConstraintAuthorMap.get(book.getAuthor().getFirstNameAndLastName())));
-
         return bookRepository.saveAll(books);
     }
 

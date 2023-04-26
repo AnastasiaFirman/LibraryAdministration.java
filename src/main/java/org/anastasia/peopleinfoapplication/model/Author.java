@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 public class Author {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "author_id_seq")
     private Long id;
     @Column(name = "first_name")
     private String firstName;
