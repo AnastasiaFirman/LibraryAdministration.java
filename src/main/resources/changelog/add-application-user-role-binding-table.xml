@@ -1,0 +1,17 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet id="2" author="Anastasia">
+        <createTable tableName="user_role_binding" remarks="User Role binding table">
+            <column name="username" type="text" remarks="reference on user table">
+                <constraints foreignKeyName="fk_user_role_binding_username" references="application_user(username)"/>
+            </column>
+            <column name="role_name" type="text" remarks="reference on role table">
+                <constraints foreignKeyName="fk_user_role_binding_role_name" references="role(role)"
+                             nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

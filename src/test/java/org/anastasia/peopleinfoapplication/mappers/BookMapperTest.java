@@ -8,8 +8,6 @@ import org.anastasia.peopleinfoapplication.model.Book;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class BookMapperTest {
     private final TestDataProvider dataProvider = new TestDataProvider();
     private final BookMapper bookMapper = new BookMapperImpl();

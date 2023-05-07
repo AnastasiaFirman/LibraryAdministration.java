@@ -1,5 +1,7 @@
-package org.anastasia.peopleinfoapplication.mappers;
+package org.anastasia.peopleinfoapplication.configuration;
 
+import org.anastasia.peopleinfoapplication.mappers.BookMapper;
+import org.anastasia.peopleinfoapplication.mappers.PersonMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

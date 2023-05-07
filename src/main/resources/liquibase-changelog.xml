@@ -5,5 +5,8 @@
     <include file="changelog/init-schema.xml"/>
     <include file="changelog/add-author-table.xml"/>
     <include file="changelog/add-book-table.xml"/>
+    <include file="changelog/add-role-table.xml"/>
+    <include file="changelog/add-application-user-table.xml"/>
+    <include file="changelog/add-application-user-role-binding-table.xml"/>
 
 </databaseChangeLog>
