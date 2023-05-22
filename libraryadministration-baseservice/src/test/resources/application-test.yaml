@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/libraryadministration_baseservice_test
+    username: postgres
+    password: postgres

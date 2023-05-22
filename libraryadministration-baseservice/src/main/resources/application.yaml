@@ -1,0 +1,19 @@
+spring:
+  liquibase:
+    change-log: classpath:/liquibase-changelog.xml
+  jpa:
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 1000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
