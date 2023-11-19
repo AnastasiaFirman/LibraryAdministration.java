@@ -11,16 +11,16 @@
             <column name="password" type="text" remarks="Password">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_account_non_expired" type="bool" remarks="Is account non expired">
+            <column name="is_account_non_expired" type="bool" remarks="Is account non expired" defaultValueBoolean="true">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_account_non_locked" type="bool" remarks="Is account non locked">
+            <column name="is_account_non_locked" type="bool" remarks="Is account non locked" defaultValueBoolean="true">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_credentials_non_expired" type="bool" remarks="Is credentials non expired">
+            <column name="is_credentials_non_expired" type="bool" remarks="Is credentials non expired" defaultValueBoolean="true">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_enabled" type="bool" remarks="Is enabled">
+            <column name="is_enabled" type="bool" remarks="Is enabled" defaultValueBoolean="true">
                 <constraints nullable="false"/>
             </column>
         </createTable>

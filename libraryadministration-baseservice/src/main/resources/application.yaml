@@ -17,3 +17,5 @@ management:
     export:
       prometheus:
         enabled: true
+jwt:
+  secret: secretsecretsecretsecretsecretsecretsecretsecretsecret

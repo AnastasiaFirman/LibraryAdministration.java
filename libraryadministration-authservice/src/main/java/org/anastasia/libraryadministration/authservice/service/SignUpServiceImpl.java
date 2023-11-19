@@ -13,6 +13,10 @@ public class SignUpServiceImpl implements SignUpService{
     private final BCryptPasswordEncoder passwordEncoder;
     @Override
     public void signUp(User user) {
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
+        user.setEnabled(true);
         String encode = passwordEncoder.encode(user.getPassword());
         user.setPassword(encode);
         userRepository.save(user);
